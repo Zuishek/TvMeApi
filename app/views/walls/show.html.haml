@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @wall.user
+
+= link_to 'Edit', edit_wall_path(@wall)
+\|
+= link_to 'Back', walls_path

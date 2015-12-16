@@ -1,0 +1,19 @@
+%h1 Listing walls
+
+%table
+  %tr
+    %th User
+    %th
+    %th
+    %th
+
+  - @walls.each do |wall|
+    %tr
+      %td= wall.user
+      %td= link_to 'Show', wall
+      %td= link_to 'Edit', edit_wall_path(wall)
+      %td= link_to 'Destroy', wall, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Wall', new_wall_path

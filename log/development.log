@@ -1,0 +1,3057 @@
+  [1m[36m (39.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (25.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateProducts (20141017192333)
+  [1m[35m (15.3ms)[0m  CREATE TABLE `products` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `price` float DEFAULT 0.0, `image_url` varchar(255), `stock` int(11) DEFAULT 0) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20141017192333')
+  [1m[36m (5.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (10.2ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255) NOT NULL, `encrypted_password` varchar(255) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (26.0ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (38.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20141018080556')[0m
+  [1m[35m (10.2ms)[0m  COMMIT
+Migrating to CreatePurchases (20141018085414)
+  [1m[36m (10.0ms)[0m  [1mCREATE TABLE `purchases` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `product_id` int(11), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (20.7ms)[0m  CREATE  INDEX `index_purchases_on_user_id`  ON `purchases` (`user_id`) 
+  [1m[36m (16.7ms)[0m  [1mCREATE  INDEX `index_purchases_on_product_id`  ON `purchases` (`product_id`) [0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20141018085414')[0m
+  [1m[35m (5.6ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+
+Started GET "/" for 62.241.151.171 at 2015-11-26 07:18:31 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.haml within layouts/application (13.8ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1[0m
+  Rendered layouts/_session.html.haml (65.1ms)
+  Rendered layouts/_flash_messages.html.haml (2.3ms)
+Completed 200 OK in 558ms (Views: 549.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 07:32:05 +0000
+
+LoadError (Unable to autoload constant API::BaseController, expected /home/ubuntu/workspace/app/controllers/api/base_controller.rb to define it):
+  app/controllers/api/products_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (83.0ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 07:32:22 +0000
+
+LoadError (Unable to autoload constant API::BaseController, expected /home/ubuntu/workspace/app/controllers/api/base_controller.rb to define it):
+  app/controllers/api/products_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (99.0ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 07:33:17 +0000
+Processing by Api::ProductsController#index as JSON
+Completed 500 Internal Server Error in 2ms
+
+NameError (uninitialized constant Api::ProductsController::Products):
+  app/controllers/api/products_controller.rb:5:in `index'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (86.9ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 07:34:42 +0000
+Processing by Api::ProductsController#index as JSON
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+Completed 200 OK in 14ms (Views: 4.8ms | ActiveRecord: 2.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (29.8ms)[0m  ALTER TABLE `users` ADD `token` varchar(255)
+  [1m[36m (2.8ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151126074113')
+  [1m[36m (4.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/" for 62.241.151.171 at 2015-11-26 07:56:26 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.haml within layouts/application (36.4ms)
+Completed 500 Internal Server Error in 95ms
+
+ActionView::Template::Error (undefined method `product_path' for #<#<Class:0x007f4a20a47bf0>:0x007f4a20a47240>):
+    2: - if @products.present?
+    3:   %ul
+    4:     - @products.each do |product|
+    5:       %li= link_to product.name, product
+    6: - else
+    7:   No products
+    8: 
+  app/views/products/index.html.haml:5:in `block in _app_views_products_index_html_haml___3428381833537093875_36765080'
+  app/views/products/index.html.haml:4:in `_app_views_products_index_html_haml___3428381833537093875_36765080'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (32.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (130.0ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 07:57:28 +0000
+Processing by Api::ProductsController#index as JSON
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+Completed 200 OK in 19ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 07:57:41 +0000
+
+ActionController::RoutingError (No route matches [GET] "/users/new"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (15.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (128.6ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 07:58:56 +0000
+
+NoMethodError (undefined method `namespace' for main:Object):
+  config/routes.rb:21:in `<top (required)>'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (112.6ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 07:59:16 +0000
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (56.2ms)
+  [1m[35mUser Load (14.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (37.9ms)
+  Rendered layouts/_flash_messages.html.haml (2.0ms)
+Completed 200 OK in 335ms (Views: 248.6ms | ActiveRecord: 58.3ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 07:59:41 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (8.8ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed@student.guc.edu.eg' LIMIT 1
+  [1m[36m (1.9ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.haml within layouts/application (4.6ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (3.2ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 116ms (Views: 55.1ms | ActiveRecord: 11.0ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 07:59:48 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed@guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed@guc.edu.eg' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.haml within layouts/application (5.5ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (4.3ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 113ms (Views: 107.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 08:00:06 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed@student.guc.edu.eg' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.haml within layouts/application (5.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (2.5ms)
+  Rendered layouts/_flash_messages.html.haml (0.3ms)
+Completed 200 OK in 115ms (Views: 41.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 08:00:20 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed@student.guc.edu.eg' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.haml within layouts/application (4.2ms)
+  [1m[35mUser Load (27.9ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (30.8ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 79ms (Views: 47.5ms | ActiveRecord: 28.3ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 08:00:45 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed_ahmed-elalfy@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (2.3ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed_ahmed-elalfy@student.guc.edu.eg' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.haml within layouts/application (53.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (3.2ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 102ms (Views: 94.6ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/users" for 62.241.151.171 at 2015-11-26 08:00:54 +0000
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "user"=>{"name"=>"Mohamed", "email"=>"mohamed.ahmed-elalfy@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Register"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'mohamed.ahmed-elalfy@student.guc.edu.eg' LIMIT 1
+  [1m[36mSQL (11.5ms)[0m  [1mINSERT INTO `users` (`created_at`, `email`, `encrypted_password`, `name`, `token`, `updated_at`) VALUES ('2015-11-26 08:00:55', 'mohamed.ahmed-elalfy@student.guc.edu.eg', '25d55ad283aa400af464c76d713c07ad', 'Mohamed', '40566675b42c0c9d4f21038e220ceda1', '2015-11-26 08:00:55')[0m
+  [1m[35m (59.0ms)[0m  COMMIT
+Redirected to https://eshop-28-1708-alfylovealfy.c9users.io/
+Completed 302 Found in 77ms (ActiveRecord: 71.0ms)
+
+
+Started GET "/" for 62.241.151.171 at 2015-11-26 08:00:55 +0000
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (9.7ms)
+  [1m[35mUser Load (1.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (4.1ms)
+  Rendered layouts/_flash_messages.html.haml (0.3ms)
+Completed 200 OK in 51ms (Views: 42.8ms | ActiveRecord: 4.2ms)
+  [1m[36mUser Load (1.9ms)[0m  [1mSELECT  `users`.* FROM `users`   ORDER BY `users`.`id` DESC LIMIT 1[0m
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 08:03:56 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (77.7ms)
+  [1m[35mUser Load (1.8ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (20.0ms)
+  Rendered layouts/_flash_messages.html.haml (1.7ms)
+Completed 200 OK in 296ms (Views: 259.8ms | ActiveRecord: 5.8ms)
+
+
+Started POST "/sessions" for 62.241.151.171 at 2015-11-26 08:04:33 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "session"=>{"email"=>"mohamed.ahmed-elalfy@student.guc.edu.eg", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (5.6ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`email` = 'mohamed.ahmed-elalfy@student.guc.edu.eg' LIMIT 1[0m
+Redirected to https://eshop-28-1708-alfylovealfy.c9users.io/
+Completed 302 Found in 9ms (ActiveRecord: 5.6ms)
+
+
+Started GET "/" for 62.241.151.171 at 2015-11-26 08:04:33 +0000
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.1ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.haml within layouts/application (10.0ms)
+  [1m[36mUser Load (2.9ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_session.html.haml (4.6ms)
+  Rendered layouts/_flash_messages.html.haml (0.5ms)
+Completed 200 OK in 56ms (Views: 47.7ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 08:04:59 +0000
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (5.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  Rendered layouts/_session.html.haml (1.7ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 41ms (Views: 40.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 08:06:14 +0000
+Processing by Api::ProductsController#index as JSON
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+Completed 200 OK in 13ms (Views: 2.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 08:06:17 +0000
+Processing by Api::ProductsController#index as JSON
+  [1m[35mProduct Load (0.2ms)[0m  SELECT `products`.* FROM `products`
+Completed 200 OK in 135ms (Views: 2.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/user/new" for 62.241.151.171 at 2015-11-26 08:06:24 +0000
+
+ActionController::RoutingError (No route matches [GET] "/user/new"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (7.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (144.6ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 08:06:55 +0000
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (3.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered layouts/_session.html.haml (2.3ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 39ms (Views: 38.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 62.241.151.171 at 2015-11-26 08:06:58 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  Rendered users/show.html.haml within layouts/application (1.2ms)
+  Rendered layouts/_session.html.haml (0.8ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 35ms (Views: 33.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1/history" for 62.241.151.171 at 2015-11-26 08:07:00 +0000
+Processing by UsersController#history as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mPurchase Load (0.4ms)[0m  SELECT `purchases`.* FROM `purchases`  WHERE `purchases`.`user_id` = 1
+  Rendered users/history.html.haml within layouts/application (5.8ms)
+  Rendered layouts/_session.html.haml (0.8ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 93ms (Views: 36.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/users/1" for 62.241.151.171 at 2015-11-26 08:07:02 +0000
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered users/show.html.haml within layouts/application (0.2ms)
+  Rendered layouts/_session.html.haml (0.8ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 207ms (Views: 204.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/new" for 62.241.151.171 at 2015-11-26 08:07:21 +0000
+Processing by UsersController#new as HTML
+  Rendered users/new.html.haml within layouts/application (3.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` = 1 LIMIT 1
+  Rendered layouts/_session.html.haml (4.2ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 37ms (Views: 36.8ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/sessions/current" for 62.241.151.171 at 2015-11-26 08:07:26 +0000
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"gjJJBLWkgV9RlRxBUrwORDFpEmCCrq6/MCBf5JBDhWs=", "id"=>"current"}
+Redirected to https://eshop-28-1708-alfylovealfy.c9users.io/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 62.241.151.171 at 2015-11-26 08:07:26 +0000
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (4.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (3.6ms)
+  Rendered layouts/_flash_messages.html.haml (0.4ms)
+Completed 200 OK in 55ms (Views: 54.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/products/1" for 62.241.151.171 at 2015-11-26 08:07:36 +0000
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProduct Load (0.5ms)[0m  [1mSELECT  `products`.* FROM `products`  WHERE `products`.`id` = 1 LIMIT 1[0m
+  Rendered products/show.html.haml within layouts/application (64.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (3.4ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 107ms (Views: 105.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/products" for 62.241.151.171 at 2015-11-26 08:07:42 +0000
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (3.0ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (104.6ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 144ms (Views: 142.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products/2" for 62.241.151.171 at 2015-11-26 08:07:45 +0000
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mProduct Load (0.6ms)[0m  [1mSELECT  `products`.* FROM `products`  WHERE `products`.`id` = 2 LIMIT 1[0m
+  Rendered products/show.html.haml within layouts/application (1.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (3.2ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 40ms (Views: 37.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/products" for 62.241.151.171 at 2015-11-26 08:07:47 +0000
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (3.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (2.6ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 43ms (Views: 42.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/products" for 62.241.151.171 at 2015-11-26 08:07:56 +0000
+Processing by Api::ProductsController#index as JSON
+  [1m[36mProduct Load (0.2ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+Completed 200 OK in 7ms (Views: 1.9ms | ActiveRecord: 0.2ms)
+  [1m[36m (278.2ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (415.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateProducts (20141017192333)
+  [1m[35m (264.6ms)[0m  CREATE TABLE `products` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `price` float DEFAULT 0.0, `image_url` varchar(255), `stock` int(11) DEFAULT 0) ENGINE=InnoDB
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20141017192333')
+  [1m[36m (35.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (232.8ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255) NOT NULL, `encrypted_password` varchar(255) NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (223.4ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20141018080556')[0m
+  [1m[35m (29.6ms)[0m  COMMIT
+Migrating to CreatePurchases (20141018085414)
+  [1m[36m (232.9ms)[0m  [1mCREATE TABLE `purchases` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `product_id` int(11), `created_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (225.5ms)[0m  CREATE  INDEX `index_purchases_on_user_id`  ON `purchases` (`user_id`) 
+  [1m[36m (223.6ms)[0m  [1mCREATE  INDEX `index_purchases_on_product_id`  ON `purchases` (`product_id`) [0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20141018085414')[0m
+  [1m[35m (29.6ms)[0m  COMMIT
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[36m (481.7ms)[0m  [1mALTER TABLE `users` ADD `token` varchar(255)[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151126074113')[0m
+  [1m[35m (39.8ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT  `products`.* FROM `products`   ORDER BY `products`.`id` ASC LIMIT 1[0m
+
+
+Started GET "/users" for 127.0.0.1 at 2015-12-15 20:01:07 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+ActionController::RoutingError (No route matches [GET] "/users"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (29.4ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2015-12-15 20:01:10 +0200
+
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (34.8ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2015-12-15 20:01:11 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.haml within layouts/application (18.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1[0m
+  Rendered layouts/_session.html.haml (29.8ms)
+  Rendered layouts/_flash_messages.html.haml (1.5ms)
+Completed 200 OK in 570ms (Views: 565.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/products/1" for 127.0.0.1 at 2015-12-15 20:01:29 +0200
+Processing by ProductsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.5ms)[0m  SELECT  `products`.* FROM `products`  WHERE `products`.`id` = 1 LIMIT 1
+  Rendered products/show.html.haml within layouts/application (15.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1[0m
+  Rendered layouts/_session.html.haml (3.7ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 91ms (Views: 87.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2015-12-15 20:01:58 +0200
+Processing by Api::ProductsController#index as JSON
+  [1m[35mProduct Load (0.4ms)[0m  SELECT `products`.* FROM `products`
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:02:01 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/products/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (36.9ms)
+
+
+Started GET "/api/product1/1" for 127.0.0.1 at 2015-12-15 20:02:09 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/product1/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (38.0ms)
+
+
+Started GET "/api/product/1" for 127.0.0.1 at 2015-12-15 20:02:14 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/product/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (28.7ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:02:17 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/products/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (29.8ms)
+
+
+Started GET "/api/products" for 127.0.0.1 at 2015-12-15 20:02:21 +0200
+Processing by Api::ProductsController#index as JSON
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+Completed 200 OK in 5ms (Views: 1.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:03:23 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/config/routes.rb:20: syntax error, unexpected keyword_do_block, expecting =>
+/home/alfy/Downloads/workspace/config/routes.rb:28: syntax error, unexpected keyword_end, expecting end-of-input):
+  config/routes.rb:20: syntax error, unexpected keyword_do_block, expecting =>
+  config/routes.rb:28: syntax error, unexpected keyword_end, expecting end-of-input
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.7ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:03:44 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+Completed 500 Internal Server Error in 0ms
+
+NoMethodError (undefined method `find' for nil:NilClass):
+  app/controllers/api/products_controller.rb:9:in `show'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.4ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:04:02 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.4ms)[0m  SELECT  `products`.* FROM `products`  WHERE `products`.`id` = 1 LIMIT 1
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-15 20:05:59 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.5ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (3.7ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (8.0ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 39ms (Views: 37.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-15 20:06:18 +0200
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT `products`.* FROM `products`[0m
+  Rendered products/index.html.haml within layouts/application (6.8ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1
+  Rendered layouts/_session.html.haml (5.4ms)
+  Rendered layouts/_flash_messages.html.haml (0.2ms)
+Completed 200 OK in 31ms (Views: 27.4ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:06:22 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`token` IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 11ms
+
+ActionView::MissingTemplate (Missing template api/products/show, api/base/show, application/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :png, :jpeg, :gif, :bmp, :tiff, :mpeg, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :rabl]}. Searched in:
+  * "/home/alfy/Downloads/workspace/app/views"
+):
+  app/controllers/api/base_controller.rb:14:in `authenticate_user!'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (0.6ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:06:34 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  `products`.* FROM `products`  WHERE `products`.`id` = 1 LIMIT 1
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:06:59 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`token` IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms
+
+ActionView::MissingTemplate (Missing template api/products/show, api/base/show, application/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :png, :jpeg, :gif, :bmp, :tiff, :mpeg, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :rabl]}. Searched in:
+  * "/home/alfy/Downloads/workspace/app/views"
+):
+  app/controllers/api/base_controller.rb:14:in `authenticate_user!'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (0.4ms)
+
+
+Started GET "/api/sessions/create" for 127.0.0.1 at 2015-12-15 20:07:35 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/sessions/create"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-15 20:07:58 +0200
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT `products`.* FROM `products`
+  Rendered products/index.html.haml within layouts/application (15.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`id` IS NULL LIMIT 1[0m
+  Rendered layouts/_session.html.haml (2.7ms)
+  Rendered layouts/_flash_messages.html.haml (0.1ms)
+Completed 200 OK in 49ms (Views: 38.3ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/api" for 127.0.0.1 at 2015-12-15 20:08:13 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (31.7ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:10:17 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users`  WHERE `users`.`token` IS NULL LIMIT 1
+Completed 500 Internal Server Error in 8ms
+
+ActionView::MissingTemplate (Missing template api/products/show, api/base/show, application/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :png, :jpeg, :gif, :bmp, :tiff, :mpeg, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :rabl]}. Searched in:
+  * "/home/alfy/Downloads/workspace/app/views"
+):
+  app/controllers/api/base_controller.rb:14:in `authenticate_user!'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (0.5ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:10:45 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  `users`.* FROM `users`  WHERE `users`.`token` IS NULL LIMIT 1[0m
+Completed 500 Internal Server Error in 12ms
+
+ActionView::MissingTemplate (Missing template api/products/show, api/base/show, application/show with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :png, :jpeg, :gif, :bmp, :tiff, :mpeg, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :haml, :rabl]}. Searched in:
+  * "/home/alfy/Downloads/workspace/app/views"
+):
+  app/controllers/api/base_controller.rb:14:in `authenticate_user!'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (0.5ms)
+
+
+Started GET "/api/products/1" for 127.0.0.1 at 2015-12-15 20:11:04 +0200
+Processing by Api::ProductsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  `products`.* FROM `products`  WHERE `products`.`id` = 1 LIMIT 1
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (685.2ms)[0m  ALTER TABLE `users` DROP `token`
+  [1m[36mSQL (34.2ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151126074113'[0m
+Migrating to CreatePurchases (20141018085414)
+  [1m[35m (99.9ms)[0m  DROP TABLE `purchases`
+  [1m[36mSQL (32.7ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20141018085414'[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (204.6ms)[0m  DROP INDEX `index_users_on_email` ON `users`
+  [1m[36m (132.9ms)[0m  [1mDROP TABLE `users`[0m
+  [1m[35mSQL (31.9ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20141018080556'
+Migrating to CreateProducts (20141017192333)
+  [1m[36m (99.5ms)[0m  [1mDROP TABLE `products`[0m
+  [1m[35mSQL (32.1ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20141017192333'
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (253.2ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) NOT NULL, `encrypted_password` varchar(255) NOT NULL, `username` varchar(255), `f_name` varchar(255), `l_name` varchar(255), `country` varchar(255), `city` varchar(255), `date_of_birth` varchar(255), `gender` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (211.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20141018080556')[0m
+  [1m[35m (23.2ms)[0m  COMMIT
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[36m (572.6ms)[0m  [1mALTER TABLE `users` ADD `token` varchar(255)[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20151126074113')[0m
+  [1m[35m (74.2ms)[0m  COMMIT
+Migrating to CreateWalls (20151215182508)
+  [1m[36m (233.5ms)[0m  [1mCREATE TABLE `walls` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [1m[35m (223.6ms)[0m  CREATE  INDEX `index_walls_on_user_id`  ON `walls` (`user_id`) 
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151215182508')
+  [1m[36m (30.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreatePosts (20151215182559)
+  [1m[35m (245.8ms)[0m  CREATE TABLE `posts` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `show_name` varchar(255), `imdb_link` varchar(255), `text` text, `wall_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (233.8ms)[0m  [1mCREATE  INDEX `index_posts_on_user_id`  ON `posts` (`user_id`) [0m
+  [1m[35m (235.1ms)[0m  CREATE  INDEX `index_posts_on_wall_id`  ON `posts` (`wall_id`) 
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151215182559')
+  [1m[36m (29.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (222.7ms)[0m  CREATE TABLE `comments` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `text` text, `post_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (246.9ms)[0m  [1mCREATE  INDEX `index_comments_on_user_id`  ON `comments` (`user_id`) [0m
+  [1m[35m (222.8ms)[0m  CREATE  INDEX `index_comments_on_post_id`  ON `comments` (`post_id`) 
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151215182633')
+  [1m[36m (30.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[35m (249.3ms)[0m  CREATE TABLE `follows` (`id` int(11) auto_increment PRIMARY KEY, `followable_id` int(11) NOT NULL, `followable_type` varchar(255) NOT NULL, `follower_id` int(11) NOT NULL, `follower_type` varchar(255) NOT NULL, `blocked` tinyint(1) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (236.0ms)[0m  [1mCREATE  INDEX `fk_follows`  ON `follows` (`follower_id`, `follower_type`) [0m
+  [1m[35m (233.8ms)[0m  CREATE  INDEX `fk_followables`  ON `follows` (`followable_id`, `followable_type`) 
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20151215182943')
+  [1m[36m (29.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'user2@example.com' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `walls` (`created_at`, `updated_at`) VALUES ('2015-12-15 18:36:28', '2015-12-15 18:36:28')
+  [1m[36m (36.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `posts` (`created_at`, `show_name`, `text`, `updated_at`, `wall_id`) VALUES ('2015-12-15 18:36:28', 'Friends', 'Friends is byfar the best show.', '2015-12-15 18:36:28', 1)
+  [1m[36m (46.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM `users`  WHERE `users`.`email` = BINARY 'user2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `comments` (`created_at`, `post_id`, `text`, `updated_at`) VALUES ('2015-12-15 18:36:28', 1, 'Yes I agree.', '2015-12-15 18:36:28')
+  [1m[36m (40.0ms)[0m  [1mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users`   ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[35m (144.5ms)[0m  DROP TABLE `follows`
+  [1m[36mSQL (40.0ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151215182943'[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (161.3ms)[0m  DROP TABLE `comments`
+  [1m[36mSQL (31.9ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151215182633'[0m
+Migrating to CreatePosts (20151215182559)
+  [1m[35m (99.6ms)[0m  DROP TABLE `posts`
+  [1m[36mSQL (33.5ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151215182559'[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (99.8ms)[0m  DROP TABLE `walls`
+  [1m[36mSQL (1510.1ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151215182508'[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (604.3ms)[0m  ALTER TABLE `users` DROP `token`
+  [1m[36mSQL (31.8ms)[0m  [1mDELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20151126074113'[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (136.7ms)[0m  DROP INDEX `index_users_on_email` ON `users`
+  [1m[36m (102.0ms)[0m  [1mDROP TABLE `users`[0m
+  [1m[35mSQL (32.0ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20141018080556'
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36m (109.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (100.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141018080556)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141018080556"]]
+  [1m[36m (145.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" ADD "token" varchar(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151126074113"]]
+  [1m[36m (96.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "walls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_walls_on_user_id" ON "walls" ("user_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182508"]]
+  [1m[35m (107.1ms)[0m  commit transaction
+Migrating to CreatePosts (20151215182559)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "show_name" varchar(255), "imdb_link" varchar(255), "text" text, "wall_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_posts_on_wall_id" ON "posts" ("wall_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182559"]]
+  [1m[36m (93.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "text" text, "post_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182633"]]
+  [1m[35m (113.9ms)[0m  commit transaction
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182943"]]
+  [1m[36m (112.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "walls" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2015-12-15 18:41:41.725448"], ["updated_at", "2015-12-15 18:41:41.725448"]]
+  [1m[36m (130.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "posts" ("created_at", "show_name", "text", "updated_at", "wall_id") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-12-15 18:41:41.889716"], ["show_name", "Friends"], ["text", "Friends is byfar the best show."], ["updated_at", "2015-12-15 18:41:41.889716"], ["wall_id", 1]]
+  [1m[36m (148.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "comments" ("created_at", "post_id", "text", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-12-15 18:41:42.066771"], ["post_id", 1], ["text", "Yes I agree."], ["updated_at", "2015-12-15 18:41:42.066771"]]
+  [1m[36m (105.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mPost Load (0.5ms)[0m  SELECT  "posts".* FROM "posts"   ORDER BY "posts"."id" ASC LIMIT 1
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "follows"[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182943'
+  [1m[36m (147.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "comments"[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182633'
+  [1m[36m (119.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20151215182559)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "posts"[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182559'
+  [1m[36m (121.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "walls"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182508'
+  [1m[36m (107.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime, "token" varchar(255)) [0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "users"
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "ausers"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "ausers"[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151126074113'
+  [1m[36m (106.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m  DROP INDEX "index_users_on_email"
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20141018080556'
+  [1m[36m (140.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141018080556"]]
+  [1m[36m (150.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "token" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151126074113"]]
+  [1m[36m (141.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "walls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_walls_on_user_id" ON "walls" ("user_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182508"]]
+  [1m[35m (153.3ms)[0m  commit transaction
+Migrating to CreatePosts (20151215182559)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "show_name" varchar(255), "imdb_link" varchar(255), "text" text, "wall_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.5ms)[0m  [1mCREATE  INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "index_posts_on_wall_id" ON "posts" ("wall_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182559"]]
+  [1m[36m (125.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "text" text, "post_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182633"]]
+  [1m[35m (136.8ms)[0m  commit transaction
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182943"]]
+  [1m[36m (135.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.4ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "walls" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2015-12-15 18:44:01.037600"], ["updated_at", "2015-12-15 18:44:01.037600"]]
+  [1m[36m (192.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "posts" ("created_at", "show_name", "text", "updated_at", "wall_id") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-12-15 18:44:01.258330"], ["show_name", "Friends"], ["text", "Friends is byfar the best show."], ["updated_at", "2015-12-15 18:44:01.258330"], ["wall_id", 1]]
+  [1m[36m (139.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "comments" ("created_at", "post_id", "text", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-12-15 18:44:01.424417"], ["post_id", 1], ["text", "Yes I agree."], ["updated_at", "2015-12-15 18:44:01.424417"]]
+  [1m[36m (298.1ms)[0m  [1mcommit transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "follows"[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182943'
+  [1m[36m (136.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mDROP TABLE "comments"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182633'
+  [1m[36m (112.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20151215182559)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mDROP TABLE "posts"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182559'
+  [1m[36m (107.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mDROP TABLE "walls"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151215182508'
+  [1m[36m (129.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime, "token" varchar(255)) [0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  CREATE UNIQUE INDEX "tindex_ausers_on_email" ON "ausers" ("email")
+  [1m[36m (0.3ms)[0m  [1mSELECT * FROM "users"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "users"
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_email' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "ausers"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "ausers"[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151126074113'
+  [1m[36m (112.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m  DROP INDEX "index_users_on_email"
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20141018080556'
+  [1m[36m (127.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20141018080556)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141018080556"]]
+  [1m[36m (141.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "users" ADD "token" varchar(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151126074113"]]
+  [1m[36m (106.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "walls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_walls_on_user_id" ON "walls" ("user_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182508"]]
+  [1m[35m (105.6ms)[0m  commit transaction
+Migrating to CreatePosts (20151215182559)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "show_name" varchar(255), "imdb_link" varchar(255), "text" text, "wall_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.5ms)[0m  [1mCREATE  INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "index_posts_on_wall_id" ON "posts" ("wall_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182559"]]
+  [1m[36m (103.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "text" text, "post_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  CREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182633"]]
+  [1m[35m (114.4ms)[0m  commit transaction
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1mCREATE  INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182943"]]
+  [1m[36m (144.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "f_name", "gender", "l_name", "token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 18:45:00.537324"], ["email", "user@example.com"], ["encrypted_password", "5f4dcc3b5aa765d61d8327deb882cf99"], ["f_name", "Ahmed"], ["gender", 1], ["l_name", "Diaby"], ["token", "1dd6589958a38b15dc05aa76cc768a13"], ["updated_at", "2015-12-15 18:45:00.537324"], ["username", "Diabox"]]
+  [1m[36m (147.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "f_name", "gender", "l_name", "token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 18:45:00.690432"], ["email", "user2@example.com"], ["encrypted_password", "5f4dcc3b5aa765d61d8327deb882cf99"], ["f_name", "Karim"], ["gender", 1], ["l_name", "Taha"], ["token", "a349f5720ab7a45b0c2f14760a1fecdf"], ["updated_at", "2015-12-15 18:45:00.690432"], ["username", "AboSenna"]]
+  [1m[36m (106.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "walls" ("created_at", "updated_at", "user_id") VALUES (?, ?, ?)[0m  [["created_at", "2015-12-15 18:45:00.822042"], ["updated_at", "2015-12-15 18:45:00.822042"], ["user_id", 1]]
+  [1m[35m (138.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "posts" ("created_at", "show_name", "text", "updated_at", "user_id", "wall_id") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 18:45:00.988891"], ["show_name", "Friends"], ["text", "Friends is byfar the best show."], ["updated_at", "2015-12-15 18:45:00.988891"], ["user_id", 1], ["wall_id", 1]]
+  [1m[36m (109.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "comments" ("created_at", "post_id", "text", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", "2015-12-15 18:45:01.117926"], ["post_id", 1], ["text", "Yes I agree."], ["updated_at", "2015-12-15 18:45:01.117926"], ["user_id", 2]]
+  [1m[35m (115.6ms)[0m  commit transaction
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-12-15 20:50:00 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (uninitialized constant ProductsController):
+  activesupport (4.1.8) lib/active_support/inflector/methods.rb:238:in `const_get'
+  activesupport (4.1.8) lib/active_support/inflector/methods.rb:238:in `block in constantize'
+  activesupport (4.1.8) lib/active_support/inflector/methods.rb:236:in `each'
+  activesupport (4.1.8) lib/active_support/inflector/methods.rb:236:in `inject'
+  activesupport (4.1.8) lib/active_support/inflector/methods.rb:236:in `constantize'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:78:in `controller_reference'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:68:in `controller'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:46:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.8) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.8) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (38.2ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:50:35 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/users/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (35.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-12-15 20:50:40 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/users"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (43.5ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:53:57 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/config/routes.rb:39: syntax error, unexpected keyword_end, expecting end-of-input):
+  config/routes.rb:39: syntax error, unexpected keyword_end, expecting end-of-input
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (19.0ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:56:15 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/config/routes.rb:40: syntax error, unexpected end-of-input, expecting keyword_end):
+  config/routes.rb:40: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:56:15 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api/users/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (13.9ms)
+
+
+Started GET "/api" for 127.0.0.1 at 2015-12-15 20:56:29 +0200
+
+ActionController::RoutingError (No route matches [GET] "/api"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (16.1ms)
+
+
+Started GET "/api" for 127.0.0.1 at 2015-12-15 20:57:10 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/config/routes.rb:40: syntax error, unexpected end-of-input, expecting keyword_end):
+  config/routes.rb:40: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.3ms)
+
+
+Started GET "/api" for 127.0.0.1 at 2015-12-15 20:57:24 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts"  WHERE "posts"."wall_id" IS NULL
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2015-12-15 20:57:36 +0200
+
+ActionController::RoutingError (No route matches [GET] "/users"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (57.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:57:43 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/app/controllers/api/users_controller.rb:35: syntax error, unexpected ')'
+...rs.include?(User.find(user_id:))).order(created_at: :desc)
+...                               ^):
+  app/controllers/api/users_controller.rb:35: syntax error, unexpected ')'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (8.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 20:58:07 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (57.3ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 21:02:38 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mPost Load (0.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered api/posts/index.json.rabl (13.9ms)
+Completed 200 OK in 37ms (Views: 32.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:03:21 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (66.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:03:53 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (56.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:03:54 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (52.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:03:56 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (62.8ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:03:56 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (51.4ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:04:02 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (51.7ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:04:05 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (64.0ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:04:27 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (65.1ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 21:04:34 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mPost Load (0.4ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered api/posts/index.json.rabl (5.7ms)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:04:59 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (59.9ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:05:06 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (60.3ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:05:27 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (54.6ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:05:41 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (59.3ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-15 21:07:16 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.0ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (56.0ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-12-15 21:07:19 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (58.5ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-12-15 21:10:59 +0200
+
+SyntaxError (/home/alfy/Downloads/workspace/config/routes.rb:39: syntax error, unexpected end-of-input, expecting keyword_end):
+  config/routes.rb:39: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.8ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2015-12-15 22:58:58 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (68.6ms)
+
+
+Started GET "/posts/1" for 127.0.0.1 at 2015-12-15 22:59:12 +0200
+
+ActionController::RoutingError (No route matches [GET] "/posts/1"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (8.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (54.8ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2015-12-15 22:59:57 +0200
+
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (16.8ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (69.6ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:00:02 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered api/posts/index.json.rabl (7.3ms)
+Completed 200 OK in 61ms (Views: 9.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:00:05 +0200
+
+AbstractController::ActionNotFound (The action 'show' could not be found for Api::PostsController):
+  actionpack (4.1.8) lib/abstract_controller/base.rb:131:in `process'
+  actionview (4.1.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.8) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `each'
+  actionpack (4.1.8) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.8) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.8) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.8) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.8) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.8) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.0.3) lib/quiet_assets.rb:23:in `call_with_quiet_assets'
+  actionpack (4.1.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.8) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.8) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.8) lib/rails/engine.rb:514:in `call'
+  railties (4.1.8) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  puma (2.10.2) lib/puma/server.rb:492:in `handle_request'
+  puma (2.10.2) lib/puma/server.rb:363:in `process_client'
+  puma (2.10.2) lib/puma/server.rb:254:in `block in run'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `call'
+  puma (2.10.2) lib/puma/thread_pool.rb:101:in `block in spawn_thread'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.5ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:00:11 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered api/posts/index.json.rabl (1.2ms)
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:02:36 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::PostsController#index as JSON
+  [1m[35mPost Load (0.2ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered api/posts/index.json.rabl (9.5ms)
+Completed 200 OK in 23ms (Views: 15.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:02:38 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.6ms)
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 0.4ms)
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts"   ORDER BY "posts"."id" ASC LIMIT 1[0m
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:04:33 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.6ms)
+Completed 200 OK in 20ms (Views: 5.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:05:46 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (1.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:07:57 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (2.2ms)
+Completed 200 OK in 58ms (Views: 43.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:08:01 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" IS NULL LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.7ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 68ms (Views: 7.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:08:17 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mPost Load (0.5ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered api/posts/index.json.rabl (9.0ms)
+Completed 200 OK in 14ms (Views: 10.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:08:25 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" IS NULL LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 12ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-15 23:09:02 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.4ms)
+Completed 200 OK in 11ms (Views: 2.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:09:09 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTo=' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 5.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:09:40 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:09:41 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:09:42 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 4.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:10:11 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 5.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:10:35 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:10:36 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 11ms (Views: 9.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/posts" for 127.0.0.1 at 2015-12-15 23:10:43 +0200
+Processing by Api::PostsController#create as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IS NULL
+Completed 500 Internal Server Error in 3ms
+
+NoMethodError (undefined method `with' for #<Api::PostsController:0x007f7ebd251e88>):
+  app/controllers/api/posts_controller.rb:27:in `create'
+
+
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (25.7ms)
+  Rendered /home/alfy/.rvm/gems/ruby-2.2.3/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (55.6ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-15 23:11:25 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.3ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddUsersToPost (20151215211437)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "posts" ADD "username" varchar(255)[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "posts" ADD "email" varchar(255)
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215211437"]]
+  [1m[35m (107.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+
+  [1m[36m (0.4ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mWall Load (0.1ms)[0m  [1mSELECT  "walls".* FROM "walls"   ORDER BY "walls"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "posts" ("created_at", "email", "show_name", "text", "updated_at", "user_id", "username", "wall_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-12-15 21:16:41.487759"], ["email", "mohamed@gmail.com"], ["show_name", "HIMYM"], ["text", "HIMYM is not the best show."], ["updated_at", "2015-12-15 21:16:41.487759"], ["user_id", 1], ["username", "Mohamed El-Alfy"], ["wall_id", 1]]
+  [1m[35m (117.1ms)[0m  commit transaction
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+[0m
+  [1m[35m (0.3ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (3.8ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+
+  [1m[36m (16.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (12.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20141018080556)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) NOT NULL, "encrypted_password" varchar(255) NOT NULL, "username" varchar(255), "f_name" varchar(255), "l_name" varchar(255), "country" varchar(255), "city" varchar(255), "date_of_birth" varchar(255), "gender" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141018080556"]]
+  [1m[36m (13.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddTokenToUsers (20151126074113)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD "token" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151126074113"]]
+  [1m[36m (10.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateWalls (20151215182508)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "walls" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_walls_on_user_id" ON "walls" ("user_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182508"]]
+  [1m[35m (12.2ms)[0m  commit transaction
+Migrating to CreatePosts (20151215182559)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "show_name" varchar(255), "imdb_link" varchar(255), "text" text, "wall_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_posts_on_wall_id" ON "posts" ("wall_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182559"]]
+  [1m[36m (10.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20151215182633)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "text" text, "post_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_comments_on_user_id" ON "comments" ("user_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215182633"]]
+  [1m[35m (9.4ms)[0m  commit transaction
+Migrating to ActsAsFollowerMigration (20151215182943)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "followable_id" integer NOT NULL, "followable_type" varchar(255) NOT NULL, "follower_id" integer NOT NULL, "follower_type" varchar(255) NOT NULL, "blocked" boolean DEFAULT 'f' NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "fk_follows" ON "follows" ("follower_id", "follower_type")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "fk_followables" ON "follows" ("followable_id", "followable_type")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151215182943"]]
+  [1m[36m (12.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddUsersToPost (20151215211437)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "posts" ADD "username" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "posts" ADD "email" varchar(255)
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151215211437"]]
+  [1m[35m (8.1ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "f_name", "gender", "l_name", "token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 21:36:41.872947"], ["email", "user@example.com"], ["encrypted_password", "5f4dcc3b5aa765d61d8327deb882cf99"], ["f_name", "Ahmed"], ["gender", 1], ["l_name", "Diaby"], ["token", "84e532078bf0c230f1d5cb6498eab09f"], ["updated_at", "2015-12-15 21:36:41.872947"], ["username", "Diabox"]]
+  [1m[36m (9.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "f_name", "gender", "l_name", "token", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 21:36:41.894975"], ["email", "user2@example.com"], ["encrypted_password", "5f4dcc3b5aa765d61d8327deb882cf99"], ["f_name", "Karim"], ["gender", 1], ["l_name", "Taha"], ["token", "d681c7a9f09dc0e1c6ef358fb63e4e1c"], ["updated_at", "2015-12-15 21:36:41.894975"], ["username", "AboSenna"]]
+  [1m[36m (8.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "walls" ("created_at", "updated_at", "user_id") VALUES (?, ?, ?)[0m  [["created_at", "2015-12-15 21:36:41.926839"], ["updated_at", "2015-12-15 21:36:41.926839"], ["user_id", 1]]
+  [1m[35m (9.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "posts" ("created_at", "email", "show_name", "text", "updated_at", "user_id", "username", "wall_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-15 21:36:41.954613"], ["email", "mohamed@gmail.com"], ["show_name", "Friends"], ["text", "Friends is byfar the best show."], ["updated_at", "2015-12-15 21:36:41.954613"], ["user_id", 1], ["username", "Mohamed El-Alfy"], ["wall_id", 1]]
+  [1m[36m (11.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mWall Load (0.2ms)[0m  [1mSELECT  "walls".* FROM "walls"   ORDER BY "walls"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "posts" ("created_at", "email", "show_name", "text", "updated_at", "user_id", "username", "wall_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-12-15 21:36:41.970620"], ["email", "mohamed@gmail.com"], ["show_name", "HIMYM"], ["text", "HIMYM is not the best show."], ["updated_at", "2015-12-15 21:36:41.970620"], ["user_id", 1], ["username", "Mohamed El-Alfy"], ["wall_id", 1]]
+  [1m[35m (9.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "comments" ("created_at", "post_id", "text", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-12-15 21:36:41.996818"], ["post_id", 1], ["text", "Yes I agree."], ["updated_at", "2015-12-15 21:36:41.996818"], ["user_id", 2]]
+  [1m[36m (9.6ms)[0m  [1mcommit transaction[0m
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 2]]
+
+
+Started GET "/" for 105.198.243.144 at 2015-12-15 21:44:12 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (4.4ms)
+Completed 200 OK in 23ms (Views: 23.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 105.198.243.144 at 2015-12-15 21:49:55 +0000
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/railties-4.1.8/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/posts/1" for 105.198.243.144 at 2015-12-15 21:50:27 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (1.4ms)
+Completed 200 OK in 144ms (Views: 105.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/posts/1" for 105.198.243.144 at 2015-12-15 21:54:55 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (1.1ms)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/1" for 105.198.248.184 at 2015-12-15 22:49:31 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.8ms)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/1" for 41.130.213.242 at 2015-12-15 23:18:11 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.4ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (1.2ms)
+Completed 200 OK in 186ms (Views: 182.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/1" for 41.130.213.242 at 2015-12-15 23:18:48 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.7ms)
+Completed 200 OK in 95ms (Views: 8.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/posts/1" for 41.176.100.111 at 2015-12-15 23:19:00 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.7ms)
+Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/2" for 41.176.100.111 at 2015-12-15 23:20:19 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mPost Load (0.3ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered api/posts/show.json.rabl (1.5ms)
+Completed 200 OK in 163ms (Views: 160.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/1" for 41.176.100.111 at 2015-12-15 23:20:23 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.6ms)
+Completed 200 OK in 164ms (Views: 162.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts/3" for 41.176.100.111 at 2015-12-15 23:20:26 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
+Completed 404 Not Found in 97ms
+
+ActiveRecord::RecordNotFound (Couldn't find Post with 'id'=3):
+  app/controllers/api/posts_controller.rb:9:in `show'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (23.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (388.2ms)
+
+
+Started GET "/api/posts/2" for 41.176.100.111 at 2015-12-15 23:20:28 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.2ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered api/posts/show.json.rabl (0.9ms)
+Completed 200 OK in 190ms (Views: 187.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts" for 41.130.213.242 at 2015-12-15 23:53:31 +0000
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1
+  Rendered api/posts/index.json.rabl (1.6ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 191ms (Views: 158.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/posts" for 41.130.213.242 at 2015-12-15 23:53:47 +0000
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" = 'Basic dXNlckBleGFtcGxlLmNvbTpwYXNzd29yZA==' LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.4ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 21ms (Views: 19.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/posts/1" for 197.35.239.164 at 2015-12-15 23:55:12 +0000
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.6ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 0.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_post_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_followables' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_followables' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='fk_follows' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='fk_follows' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_wall_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_walls_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "walls" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", "2015-12-16 00:02:21.282191"], ["updated_at", "2015-12-16 00:02:21.282191"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "posts" ("created_at", "email", "show_name", "text", "updated_at", "username", "wall_id") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-12-16 00:02:21.319049"], ["email", "mohamed@gmail.com"], ["show_name", "Friends"], ["text", "Friends is byfar the best show."], ["updated_at", "2015-12-16 00:02:21.319049"], ["username", "Mohamed El-Alfy"], ["wall_id", 2]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mWall Load (0.1ms)[0m  [1mSELECT  "walls".* FROM "walls"   ORDER BY "walls"."id" ASC LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "posts" ("created_at", "email", "show_name", "text", "updated_at", "user_id", "username", "wall_id") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-12-16 00:02:21.323222"], ["email", "mohamed@gmail.com"], ["show_name", "HIMYM"], ["text", "HIMYM is not the best show."], ["updated_at", "2015-12-16 00:02:21.323222"], ["user_id", 1], ["username", "Mohamed El-Alfy"], ["wall_id", 1]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'user2@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "comments" ("created_at", "post_id", "text", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-12-16 00:02:21.332184"], ["post_id", 3], ["text", "Yes I agree."], ["updated_at", "2015-12-16 00:02:21.332184"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+
+
+Started GET "/api" for 127.0.0.1 at 2015-12-16 02:03:06 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::PostsController#index as JSON
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."token" IS NULL LIMIT 1
+  Rendered api/posts/index.json.rabl (0.6ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 43ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/users/1" for 127.0.0.1 at 2015-12-16 02:03:14 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.0ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.2ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (72.5ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-16 02:03:21 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.5ms)
+Completed 200 OK in 12ms (Views: 2.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/posts/1" for 127.0.0.1 at 2015-12-16 02:04:01 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered api/posts/show.json.rabl (0.6ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/api/posts" for 127.0.0.1 at 2015-12-16 02:04:14 +0200
+Processing by Api::PostsController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."token" IS NULL LIMIT 1[0m
+  Rendered api/posts/index.json.rabl (0.2ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 3.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts/2" for 127.0.0.1 at 2015-12-16 02:04:42 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mPost Load (0.2ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered api/posts/show.json.rabl (0.5ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/posts/2" for 127.0.0.1 at 2015-12-16 02:05:35 +0200
+Processing by Api::PostsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered api/posts/show.json.rabl (0.4ms)
+Completed 200 OK in 13ms (Views: 2.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-12-16 02:05:39 +0200
+
+ActionController::RoutingError (uninitialized constant BaseController):
+  app/controllers/api/users_controller.rb:1:in `<top (required)>'
+
+
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_route.html.erb (6.9ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/a_walid/.rvm/gems/ruby-2.1.1/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (55.2ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2015-12-16 02:06:07 +0200
+Processing by Api::UsersController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+  Rendered api/users/index.json.rabl (9.2ms)
+Completed 200 OK in 16ms (Views: 10.6ms | ActiveRecord: 0.6ms)
