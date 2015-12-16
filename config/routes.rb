@@ -19,11 +19,16 @@ Rails.application.routes.draw do
   end
 
 namespace :api, defaults: { format: :json } do
-resources :sessions, only: :create
+   resources :sessions, only: :create
 resources :users do
   resources :posts
   resources :comments
   resources :walls
+  member do
+    get :followers
+    get :following
+    
+  end
 end
 resources :walls do
   resources :posts

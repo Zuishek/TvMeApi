@@ -1,4 +1,4 @@
-class Api::CommentsController < BaseController
+class Api::CommentsController < Api::BaseController
 	def index
 		@comment = Comment.where(post_id: params[:post_id])
 		respond_with @comment

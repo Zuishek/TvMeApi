@@ -1,18 +1,18 @@
 class Api::UsersController < Api::BaseController
 	def followers
-		@followers =  User.find(params[:current_user]).followers
+		@followers =  User.find(params[:id]).followers
 		respond_with @followers
 	end
 
 	def following
-		@following = User.find(params[:current_user]).all_follows
+		@following = User.find(params[:id]).all_following
 		respond_with @following
 	end
 
 	def unfollow
 		follower = User.find(params[:current_user])
 		unfollowed = User.find(params[:user_id])
-		respond_with follower.stop_followning(unfollowed)
+		follower.stop_followning(unfollowed)
 		if(!follower.following?(followed))
 			respond_with status: 201
 		end
@@ -21,6 +21,7 @@ class Api::UsersController < Api::BaseController
 	def follow
 		follower = User.find(params[:current_user])
 		followed = User.find(params[:user_id])
+		follower.follow(followed)
 		if(follower.following?(followed))
 			respond_with status: 201
 		end
@@ -28,10 +29,12 @@ class Api::UsersController < Api::BaseController
 
 	def show
 		@user = User.find(params[:id])
+		respond_with @user
 	end
 
 	def index
 		@users = User.all
+		respond_with @users
 	end
 	
 	
